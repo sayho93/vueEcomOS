@@ -56,7 +56,7 @@
                     Remember me
                   </label>
               </div>
-              <button type="submit" class="btn-xl btn-success mt-3">Sign in</button>
+              <button type="submit" class="btn-xl btn-success mt-3 jSub">Sign in</button>
             </form>
           </div>
           <div class="modal-footer">
@@ -72,6 +72,13 @@
 </template>
 
 <script>
+  /*eslint-env jquery*/
+  $(document).ready(function(){
+    $(".jSub").click(function(){
+      alert(":::");
+    });
+  });
+
 import Cart from '@/components/Cart.vue'
 
 export default {
@@ -96,13 +103,15 @@ export default {
       this.$refs.cartMove.cartON()
     },
     onSubmit(email, password){
-      this.$store.dispatch("checkEmail", {email, password})
-              .catch(({message}) => this.message = message)
-              .then(({response}) => console.log(response))
+      //info direct transfer ex
+      // this.$axios.get(`http://localhost:8400/shared/public/route.php?F=UserSVC.checkEmail&email=${email}&a=${password}`)
+      //         .then((response) => console.log(response));
 
-      // this.$store.dispatch("LOGIN", {email, password})
-      //         .then(() => this.redirect())
-      //         .catch(({message}) => this.message = message)
+      this.$store.dispatch("checkEmail", {email, password})
+
+      this.$store.dispatch("LOGIN", {email, password})
+              .then(() => this.redirect())
+              .catch(({message}) => this.message = message)
     },
     redirect(){
       const {search} = window.location

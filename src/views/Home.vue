@@ -21,7 +21,7 @@
       </div>
     </section>
 
-    <section class="info">
+    <section class="info jSub">
       <div class="row p-4">
         <div class="col-6">
           <img class="float-lg-right" src="../assets/new.jpg">
@@ -54,6 +54,13 @@
 
   </div>
 </template>
+
+<script>
+  /*eslint-env jquery*/
+  $(document).ready(function(){
+    $(".jSub").click(function(){alert("home jSub clicked")});
+  });
+</script>
 
 <style>
 
